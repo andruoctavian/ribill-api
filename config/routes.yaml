@@ -1,3 +1,11 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+service:
+    prefix: /service
+    resource: 'routes/service.yaml'
+
+metric:
+    prefix: /metric
+    resource: 'routes/metric.yaml'

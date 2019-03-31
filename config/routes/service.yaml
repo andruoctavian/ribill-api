@@ -1,0 +1,9 @@
+service_list:
+  path: /list
+  controller: App\Controller\ServiceController::list
+  methods: [POST]
+
+service_add:
+  path: /add
+  controller: App\Controller\ServiceController::add
+  methods: [POST, OPTIONS]

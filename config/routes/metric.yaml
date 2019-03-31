@@ -1,0 +1,9 @@
+metric_list:
+  path: /list/{id}
+  controller: App\Controller\MetricController::list
+  methods: [POST]
+
+metric_add:
+  path: /add/{id}
+  controller: App\Controller\MetricController::add
+  methods: [POST, OPTIONS]
