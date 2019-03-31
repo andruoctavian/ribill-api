@@ -9,7 +9,7 @@ async function main() {
     // }];
 
     //await db.service.addMetric('metricks22', '5ca0d18dcfbe7fd82acb259a', 'POST', 'randomurl');
-    let list = await db.service.list();
+    let list = await db.service.listMetrics('5ca0d18dcfbe7fd82acb259a');
     console.log(list)
 }
 

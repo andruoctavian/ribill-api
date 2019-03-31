@@ -13,7 +13,8 @@ app.use(function (req, res, next) {
   });
 
 const service = require('./routes/service.js')
-
+const metric = require('./routes/metric.js')
 app.use('/service', service);
+app.use('/metric', metric);
 
 app.listen(9000);

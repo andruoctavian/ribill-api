@@ -71,14 +71,28 @@ async function addMetric(name, serviceId, method, URL) {
     let metric = new Metric({ name: name, method: method, URL: URL });
     service.metrics.push(metric);
 
-    //console.log(service);
     return service.save();
+}
+
+async function listMetrics(serviceId){
+    let metrics = []
+    let service = await findServiceById(serviceId);
+    
+
+    for (metric of service.metrics){
+        
+        metrics.push({id: metric.id, name: metric.name})
+    }
+
+    
+    return metrics;
 }
 
 const service = {
     create,
     list,
-    addMetric
+    addMetric,
+    listMetrics
 };
 
 module.exports = service;
