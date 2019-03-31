@@ -28,42 +28,57 @@ var serviceSchema = new mongoose.Schema({
     }
 });
 
-var Service = mongoose.model('Service', serviceSchema);
+const Metric = mongoose.model('Metric', metricSchema);
+const Service = mongoose.model('Service', serviceSchema);
 
 
 function create(giveName, giveMetrics) {
-    let service = (giveMetrics) 
-        ? new Service({name: giveName, metrics: giveMetrics})
-        : new Service({name: giveName});
+    let service = (giveMetrics)
+        ? new Service({ name: giveName, metrics: giveMetrics })
+        : new Service({ name: giveName });
     return service.save();
 }
 
 async function list() {
     let serviceList = [];
-    let obj = {};
+    let obj = {
+        id: undefined,
+        name: ''
+    };
     await Service.find(function (err, services) {
-        
+
         if (err) return console.error(err);
-        console.log(services);
+
 
         for (let service of services) {
+            obj = {};
             obj.id = service.id;
             obj.name = service.name;
             serviceList.push(obj);
-        //     console.log('name: ' + service.name);
-        //     console.log('metrics:');
 
-        //     for (metric of service.metrics) {
-        //         console.log(metric);
-        //     }
         }
     });
+    //console.log(serviceList)
     return serviceList;
+}
+
+function findServiceById(id) {
+    return Service.findById(id);
+}
+
+async function addMetric(name, serviceId, method, URL) {
+    let service = await findServiceById(serviceId);
+    let metric = new Metric({ name: name, method: method, URL: URL });
+    service.metrics.push(metric);
+
+    //console.log(service);
+    return service.save();
 }
 
 const service = {
     create,
-    list
+    list,
+    addMetric
 };
 
 module.exports = service;
