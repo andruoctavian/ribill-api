@@ -4,7 +4,7 @@ const db = require('../database/database.js');
 
 
 app.get('/list', async function(req, res){
-    let services = await db.service.list();
+    let services = (req.query.skip && req.query.limit) ? await db.service.list(req.query.skip, req.query.limit) : await db.service.list();
     res.send(JSON.stringify(services));
 });
 

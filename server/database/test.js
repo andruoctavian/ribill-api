@@ -7,9 +7,9 @@ async function main() {
     //     method: 'POST',
     //     URL: '/test/lala'
     // }];
-
+    let list = await db.service.list();
     //await db.service.addMetric('metricks22', '5ca0d18dcfbe7fd82acb259a', 'POST', 'randomurl');
-    let list = await db.service.listMetrics('5ca0d18dcfbe7fd82acb259a');
+    //let list = await db.service.listMetrics('5ca0d18dcfbe7fd82acb259a');
     console.log(list)
 }
 

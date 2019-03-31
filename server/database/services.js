@@ -39,7 +39,7 @@ function create(giveName, giveMetrics) {
     return service.save();
 }
 
-async function list() {
+async function list(skip = 0, limit = 0) {
     let serviceList = [];
     let obj = {
         id: undefined,
@@ -57,7 +57,7 @@ async function list() {
             serviceList.push(obj);
 
         }
-    });
+    }).skip(parseInt(skip)).limit(parseInt(limit));
     //console.log(serviceList)
     return serviceList;
 }
@@ -81,7 +81,7 @@ async function listMetrics(serviceId){
 
     for (metric of service.metrics){
         
-        metrics.push({id: metric.id, name: metric.name})
+        metrics.push({id: metric.id, name: metric.name, method:metric.method, url: method.URL});
     }
 
     
